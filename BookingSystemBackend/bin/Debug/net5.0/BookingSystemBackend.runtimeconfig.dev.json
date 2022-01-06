@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\horea\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\horea\\.nuget\\packages"
+    ]
+  }
+}
