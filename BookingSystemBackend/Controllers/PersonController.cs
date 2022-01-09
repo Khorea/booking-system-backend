@@ -1,5 +1,6 @@
 ﻿using BookingSystemBackend.Models;
 using BookingSystemBackend.Repos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -21,12 +22,14 @@ namespace BookingSystemBackend.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Person>>> Get()
         {
             return await _personRepo.GetAll();
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Person>> Post(Person person)
         {
             await _personRepo.Add(person);
