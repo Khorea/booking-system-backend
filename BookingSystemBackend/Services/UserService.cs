@@ -50,7 +50,7 @@ namespace BookingSystemBackend.Services
                         new Claim("Username", account.Username),
                         new Claim("Role", account.Role)
                     }),
-                    Expires = DateTime.Now.AddMinutes(30),
+                    Expires = DateTime.Now.AddDays(1),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("92041820582301542915")), SecurityAlgorithms.HmacSha256Signature)
                 };
                 JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();

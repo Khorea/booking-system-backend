@@ -23,9 +23,9 @@ namespace BookingSystemBackend.Controllers
 
         [HttpGet]
         [Authorize]
-        public async Task<ActionResult<IEnumerable<Person>>> Get()
+        public async Task<ActionResult<List<Person>>> Get()
         {
-            return await _personRepo.GetAll();
+            return Ok(await _personRepo.GetAll());
         }
 
         [HttpPost]

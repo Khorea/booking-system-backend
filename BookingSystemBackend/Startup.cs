@@ -46,7 +46,7 @@ namespace BookingSystemBackend
 
             services.AddCors();
 
-            var key = Encoding.UTF8.GetBytes(Configuration["ApplicationSettings:JWT_Secret"].ToString());
+            var key = Encoding.UTF8.GetBytes("92041820582301542915");
 
             services.AddAuthentication(x =>
             {
@@ -56,7 +56,7 @@ namespace BookingSystemBackend
             }).AddJwtBearer(x =>
             {
                 x.RequireHttpsMetadata = false;
-                x.SaveToken = false;
+                x.SaveToken = true;
                 x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
@@ -79,10 +79,8 @@ namespace BookingSystemBackend
             }
 
             app.UseHttpsRedirection();
-
+            
             app.UseRouting();
-
-            app.UseAuthorization();
 
             app.UseCors(builder =>
             {
@@ -91,7 +89,10 @@ namespace BookingSystemBackend
                 .AllowAnyMethod();
             });
 
+
             app.UseAuthentication();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
