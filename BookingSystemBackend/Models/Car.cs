@@ -15,8 +15,8 @@ namespace BookingSystemBackend.Models
         [Column(TypeName = "nvarchar(30)")]
         public string CarType { get; set; }
 
-        [ForeignKey("Train"), Column(TypeName = "nvarchar(30)")]
-        public string TrainId { get; set; }
+        [ForeignKey("Train")]
+        public int TrainId { get; set; }
 
         public ICollection<Seat> Seats { get; set; }
     }

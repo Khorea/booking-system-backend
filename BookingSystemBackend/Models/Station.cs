@@ -15,13 +15,17 @@ namespace BookingSystemBackend.Models
         [Column(TypeName = "nvarchar(100)")]
         public string Location { get; set; }
 
-        [ForeignKey("Route")]
-        public int RouteId { get; set; }
+        [ForeignKey("Train")]
+        public int TrainId { get; set; }
 
-        public Route Route { get; set; }
+        public Train Train { get; set; }
 
-        public DateTime ArriveTime { get; set; }
+        public DateTime? ArriveTime { get; set; }
 
-        public DateTime DepartureTime { get; set; }
+        public DateTime? DepartureTime { get; set; }
+
+        public int DistanceTraversed { get; set; }
+
+        public int OrderNumber { get; set; }
     }
 }

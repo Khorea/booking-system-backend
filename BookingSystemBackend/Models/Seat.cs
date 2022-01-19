@@ -11,17 +11,10 @@ namespace BookingSystemBackend.Models
     {
         [Key]
         public int SeatId { get; set; }
-        
-        public bool IsBooked { get; set; }
 
         [ForeignKey("Car")]
         public int CarId { get; set; }
 
         public Car Car { get; set; }
-
-        [ForeignKey("Booking")]
-        public int? BookingId { get; set; }
-
-        public Booking Booking { get; set; }
     }
 }

@@ -9,19 +9,20 @@ namespace BookingSystemBackend.Models
 {
     public class Booking
     {
-        [Key]
-        public int BookingId { get; set; }
+        [Column(TypeName = "Date")]
+        public DateTime BookingDate { get; set; }
 
         [ForeignKey("Person")]
         public int PersonId { get; set; }
 
         public Person Person { get; set; }
 
-        [ForeignKey("Route")]
-        public int RouteId { get; set; }
+        [ForeignKey("Train")]
+        public int TrainId { get; set; }
 
-        public Route Route { get; set; }
+        public Train Train { get; set; }
 
-        public ICollection<Seat> Seats { get; set; }
+        [ForeignKey("Seat")]
+        public int SeatId { get; set; }
     }
 }
