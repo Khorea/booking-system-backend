@@ -38,7 +38,7 @@ namespace BookingSystemBackend.Controllers
             {
                 return BadRequest(new { error = token });
             }
-            else return Ok(new { token });
+            else return Ok(new { token, loginDTO.Username });
         }
     }
 }

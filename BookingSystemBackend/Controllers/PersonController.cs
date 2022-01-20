@@ -1,4 +1,6 @@
-﻿using BookingSystemBackend.Models;
+﻿using AutoMapper;
+using BookingSystemBackend.Models;
+using BookingSystemBackend.Models.DTOs;
 using BookingSystemBackend.Repos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -15,15 +17,17 @@ namespace BookingSystemBackend.Controllers
     public class PersonController : ControllerBase
     {
         private readonly IPersonRepository _personRepo;
+        private readonly IMapper _mapper;
 
-        public PersonController(IPersonRepository personRepo)
+        public PersonController(IPersonRepository personRepo, IMapper mapper)
         {
             _personRepo = personRepo;
+            _mapper = mapper;   
         }
 
         [HttpGet]
         [Authorize]
-        public async Task<ActionResult<List<Person>>> Get()
+        public async Task<ActionResult<List<Person>>> GetAll()
         {
             return Ok(await _personRepo.GetAll());
         }
@@ -35,5 +39,13 @@ namespace BookingSystemBackend.Controllers
             await _personRepo.Add(person);
             return CreatedAtAction("Get", new { id = person.PersonId }, person);
         }
+
+        [HttpGet]
+        [Route("PersonDetails")]
+        [Authorize]
+        public async Task<ActionResult<Person>> GetPersonDetails(string username)
+        {
+            return Ok(_mapper.Map<PersonDetails>((await _personRepo.GetByUsername(username))));
+        } 
     }
 }

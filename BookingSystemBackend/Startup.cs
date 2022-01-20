@@ -44,6 +44,8 @@ namespace BookingSystemBackend
             services.AddScoped<IAccountRepository, EFCoreAccountRepository>();
             services.AddScoped<UserService>();
 
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             services.AddCors();
 
             var key = Encoding.UTF8.GetBytes("92041820582301542915");

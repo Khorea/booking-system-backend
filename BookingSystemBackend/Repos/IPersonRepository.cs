@@ -8,6 +8,6 @@ namespace BookingSystemBackend.Repos
 {
     public interface IPersonRepository : IRepository<Person>
     {
-        Task<List<Person>> GetSorted();
+        public Task<Person> GetByUsername(string username);
     }
 }
