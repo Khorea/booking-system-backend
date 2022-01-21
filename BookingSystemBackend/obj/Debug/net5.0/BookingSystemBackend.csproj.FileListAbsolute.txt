@@ -122,3 +122,9 @@ C:\Users\Ontegra Solutions\booking-system-backend\BookingSystemBackend\bin\Debug
 C:\Users\Ontegra Solutions\booking-system-backend\BookingSystemBackend\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
 C:\Users\Ontegra Solutions\booking-system-backend\BookingSystemBackend\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
 C:\Users\Ontegra Solutions\booking-system-backend\BookingSystemBackend\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\horea\source\repos\BookingSystemBackend\BookingSystemBackend\bin\Debug\net5.0\AutoMapper.dll
+C:\Users\horea\source\repos\BookingSystemBackend\BookingSystemBackend\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\horea\source\repos\BookingSystemBackend\BookingSystemBackend\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\horea\source\repos\BookingSystemBackend\BookingSystemBackend\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
+C:\Users\horea\source\repos\BookingSystemBackend\BookingSystemBackend\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+C:\Users\horea\source\repos\BookingSystemBackend\BookingSystemBackend\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
