@@ -33,7 +33,10 @@ namespace BookingSystemBackend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers()
+                .AddNewtonsoftJson(options =>
+                                   options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BookingSystemBackend", Version = "v1" });
@@ -42,7 +45,12 @@ namespace BookingSystemBackend
             services.AddDbContext<BookingSystemContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
             services.AddScoped<IPersonRepository, EFCorePersonRepository>();
             services.AddScoped<IAccountRepository, EFCoreAccountRepository>();
+            services.AddScoped<ITrainRepository, EFCoreTrainRepository>();
+            services.AddScoped<ICarRepository, EFCoreCarRepository>();
+            services.AddScoped<ISeatRepository, EFCoreSeatRepository>();
+            services.AddScoped<IStationRepository, EFCoreStationRepository>();
             services.AddScoped<UserService>();
+            services.AddScoped<TrainService>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

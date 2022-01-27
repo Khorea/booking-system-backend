@@ -20,9 +20,9 @@ namespace BookingSystemBackend.Models
 
         public Train Train { get; set; }
 
-        public DateTime? ArriveTime { get; set; }
+        public TimeSpan? ArriveTime { get; set; }
 
-        public DateTime? DepartureTime { get; set; }
+        public TimeSpan? DepartureTime { get; set; }
 
         public int DistanceTraversed { get; set; }
 

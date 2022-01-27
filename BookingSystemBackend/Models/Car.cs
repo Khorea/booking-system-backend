@@ -19,5 +19,14 @@ namespace BookingSystemBackend.Models
         public int TrainId { get; set; }
 
         public ICollection<Seat> Seats { get; set; }
+
+        public Car() { }
+        public Car(string carType, int trainId)
+        {
+            CarType = carType;
+            TrainId = trainId;
+            Seats = new List<Seat>();
+        }
+
     }
 }

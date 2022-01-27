@@ -7,10 +7,12 @@ namespace BookingSystemBackend.Models.DTOs
 {
     public class StationDTO
     {
+        public int StationId { get; set; }
         public string Location { get; set; }
-        public DateTime ArriveTime { get; set; }
-        public DateTime DepartureTime { get; set; }
-        public int DistanceTraversed { get; set; }
+        public string ArriveTime { get; set; }
+        public string DepartureTime { get; set; }
+        public int Distance { get; set; }
+        public int Line { get; set; }
         public int OrderNumber { get; set; }
     }
 }
