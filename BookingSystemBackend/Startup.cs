@@ -51,6 +51,8 @@ namespace BookingSystemBackend
             services.AddScoped<IStationRepository, EFCoreStationRepository>();
             services.AddScoped<UserService>();
             services.AddScoped<TrainService>();
+            services.AddScoped<CarService>();
+            services.AddScoped<LayoutService>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

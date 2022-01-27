@@ -20,11 +20,15 @@ namespace BookingSystemBackend.Models
 
         public Train Train { get; set; }
 
+        [Column(TypeName = "time(7)")]
         public TimeSpan? ArriveTime { get; set; }
 
+        [Column(TypeName = "time(7)")]
         public TimeSpan? DepartureTime { get; set; }
 
-        public int DistanceTraversed { get; set; }
+        public int Distance { get; set; }
+
+        public int Line { get; set; }
 
         public int OrderNumber { get; set; }
     }

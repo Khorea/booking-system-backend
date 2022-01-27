@@ -56,5 +56,13 @@ namespace BookingSystemBackend.Controllers
             }
             return NotFound();
         }
+
+        [HttpPut]
+        [Authorize]
+        public async Task<ActionResult> UpdateTrain(int trainId, TrainDTO trainModel)
+        {
+            await _trainService.UpdateTrain(trainId, trainModel);
+            return NoContent();
+        }
     }
 }

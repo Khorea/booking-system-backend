@@ -17,17 +17,21 @@ namespace BookingSystemBackend.Services
         private readonly ISeatRepository _seatRepository;
         private readonly IMapper _mapper;
 
+        private readonly LayoutService _layoutService;
+
         public TrainService(ITrainRepository trainRepository,
                             IStationRepository stationRepository,
                             ICarRepository carRepository,
                             ISeatRepository seatRepository,
-                            IMapper mapper)
+                            IMapper mapper,
+                            LayoutService layoutService)
         {
             _trainRepository = trainRepository;
             _stationRepository = stationRepository;
             _carRepository = carRepository;
             _seatRepository = seatRepository;
             _mapper = mapper;
+            _layoutService = layoutService;
         }
 
         public async Task<Train> InsertTrain(TrainDTO trainDTO)
@@ -37,61 +41,10 @@ namespace BookingSystemBackend.Services
             train.TrainType = trainDTO.TrainType;
             train = await _trainRepository.Add(train);
 
-            List<StationDTO> stationDTOs = trainDTO.Stations;
-            List<Station> stations = _mapper.Map<List<Station>>(stationDTOs);
+            List<Station> stations = _mapper.Map<List<Station>>(trainDTO.Stations);
             TrainLayout trainLayout = trainDTO.TrainLayout;
 
-            for (int i = 0; i < trainLayout.FirstClass; i++)
-            {
-                Car car = new Car("First Class", train.TrainId);
-                car = await _carRepository.Add(car);
-                for (int j = 0; j < 20; j++)
-                {
-                    Seat seat = new Seat(car.CarId);
-                    seat = await _seatRepository.Add(seat);
-                    car.Seats.Add(seat);
-                }
-                train.Cars.Add(car);
-            }
-
-            for (int i = 0; i < trainLayout.SecondClass; i++)
-            {
-                Car car = new Car("Second Class", train.TrainId);
-                car = await _carRepository.Add(car);
-                for (int j = 0; j < 50; j++)
-                {
-                    Seat seat = new Seat(car.CarId);
-                    seat = await _seatRepository.Add(seat);
-                    car.Seats.Add(seat);
-                }
-                train.Cars.Add(car);
-            }
-
-            for (int i = 0; i < trainLayout.FirstClassSleeper; i++)
-            {
-                Car car = new Car("First Class Sleeper", train.TrainId);
-                car = await _carRepository.Add(car);
-                for (int j = 0; j < 10; j++)
-                {
-                    Seat seat = new Seat(car.CarId);
-                    seat = await _seatRepository.Add(seat);
-                    car.Seats.Add(seat);
-                }
-                train.Cars.Add(car);
-            }
-
-            for (int i = 0; i < trainLayout.Couchette; i++)
-            {
-                Car car = new Car("Couchette", train.TrainId);
-                car = await _carRepository.Add(car);
-                for (int j = 0; j < 60; j++)
-                {
-                    Seat seat = new Seat(car.CarId);
-                    seat = await _seatRepository.Add(seat);
-                    car.Seats.Add(seat);
-                }
-                train.Cars.Add(car);
-            }
+            train.Cars = await _layoutService.CreateTrainLayout(trainLayout, train.TrainId);
 
             for (int i = 0; i < stations.Count; i++)
             {
@@ -122,6 +75,17 @@ namespace BookingSystemBackend.Services
             List<Train> trains = await _trainRepository.GetAll();
             List<TrainDetails> trainDetails = _mapper.Map<List<TrainDetails>>(trains);
             return trainDetails;
+        }
+
+        public async Task UpdateTrain(int trainId, TrainDTO trainDTO)
+        {
+            Train oldTrain = await _trainRepository.Get(trainId);
+            TrainLayout oldLayout = _mapper.Map<TrainLayout>(oldTrain.Cars);
+
+            oldTrain.TrainType = trainDTO.TrainType;
+            oldTrain.Stations = _mapper.Map<ICollection<Station>>(trainDTO.Stations);
+            await _trainRepository.Update(oldTrain);
+            await _layoutService.ChangeLayout(trainId, oldLayout, trainDTO.TrainLayout);
         }
     }
 }

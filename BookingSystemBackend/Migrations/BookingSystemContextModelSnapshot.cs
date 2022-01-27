@@ -137,7 +137,10 @@ namespace BookingSystemBackend.Migrations
                     b.Property<TimeSpan?>("DepartureTime")
                         .HasColumnType("time");
 
-                    b.Property<int>("DistanceTraversed")
+                    b.Property<int>("Distance")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Line")
                         .HasColumnType("int");
 
                     b.Property<string>("Location")

@@ -8,5 +8,6 @@ namespace BookingSystemBackend.Repos
 {
     public interface ICarRepository : IRepository<Car>
     {
+        Task<Car> RemoveCar(int trainId, string carType);
     }
 }

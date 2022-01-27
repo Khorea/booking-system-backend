@@ -5797,19 +5797,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\horea\\.nuget\\packages\\": {}
+    "C:\\Users\\Ontegra Solutions\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\horea\\source\\repos\\BookingSystemBackend\\BookingSystemBackend\\BookingSystemBackend.csproj",
+      "projectUniqueName": "C:\\Users\\Ontegra Solutions\\booking-system-backend\\BookingSystemBackend\\BookingSystemBackend.csproj",
       "projectName": "BookingSystemBackend",
-      "projectPath": "C:\\Users\\horea\\source\\repos\\BookingSystemBackend\\BookingSystemBackend\\BookingSystemBackend.csproj",
-      "packagesPath": "C:\\Users\\horea\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\horea\\source\\repos\\BookingSystemBackend\\BookingSystemBackend\\obj\\",
+      "projectPath": "C:\\Users\\Ontegra Solutions\\booking-system-backend\\BookingSystemBackend\\BookingSystemBackend.csproj",
+      "packagesPath": "C:\\Users\\Ontegra Solutions\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Ontegra Solutions\\booking-system-backend\\BookingSystemBackend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\horea\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Ontegra Solutions\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5888,7 +5888,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

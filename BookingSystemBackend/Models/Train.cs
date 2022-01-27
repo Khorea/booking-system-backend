@@ -18,5 +18,14 @@ namespace BookingSystemBackend.Models
         public ICollection<Car> Cars { get; set; }
 
         public ICollection<Station> Stations { get; set; }
+
+        public Train() { }
+
+        public Train(string trainType, ICollection<Car> cars, ICollection<Station> stations)
+        {
+            TrainType = trainType;
+            Cars = cars;
+            Stations = stations;
+        }
     }
 }
