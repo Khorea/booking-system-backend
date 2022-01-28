@@ -27,5 +27,9 @@ namespace BookingSystemBackend.Models
             Role = role;
             IsActive = isActive;
         }
+
+        public Account()
+        {
+        }
     }
 }

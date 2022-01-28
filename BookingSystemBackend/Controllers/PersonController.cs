@@ -29,9 +29,9 @@ namespace BookingSystemBackend.Controllers
 
         [HttpGet]
         [Authorize]
-        public async Task<ActionResult<List<Person>>> GetAll()
+        public async Task<ActionResult<List<PersonDetails>>> GetAll()
         {
-            return Ok(await _personRepo.GetAll());
+            return Ok(_mapper.Map<List<PersonDetails>>(await _personRepo.GetAllWithAccounts()));
         }
 
         [HttpPost]
@@ -54,27 +54,41 @@ namespace BookingSystemBackend.Controllers
         [Authorize]
         public async Task<ActionResult<PersonDetails>> UpdatePersonDetails(User user, string oldUsername)
         {
-            
+            Person newPerson;
             Person oldPerson = await _personRepo.GetByUsername(oldUsername);
-            await _personRepo.Delete(oldPerson.PersonId);
-            Account oldAccount = oldPerson.Account;
+            if (oldPerson == null)
+                return NotFound();
 
-            oldAccount.Username = user.Username;
-            if (!string.IsNullOrEmpty(user.Password))
+            if (user.Username.Equals(oldPerson.Username))
             {
-                oldAccount.Password = user.Password;
+                oldPerson.Name = user.Name;
+                oldPerson.Address = user.Address;
+                oldPerson.Email = user.Email;
+                oldPerson.Account.Password = string.IsNullOrEmpty(user.Password) ? oldPerson.Account.Password : user.Password;
+
+                newPerson = await _personRepo.Update(oldPerson);
             }
-            Account newAccount = await _accountRepo.Update(oldAccount);
+            else
+            {
+                Account acc = await _accountRepo.Get(user.Username);
+                if (acc != null)
+                    return Conflict();
 
-            Person newPerson = new Person();
-            newPerson.Name = user.Name;
-            newPerson.Address = user.Address;
-            newPerson.Email = user.Email;
-            newPerson.Username = user.Username;
-            newPerson.Account = newAccount;
-            newPerson.Bookings = oldPerson.Bookings;
+                _personRepo.UpdatePersonDetails(oldPerson.PersonId, user.Name, user.Address,
+                                                user.Email, user.Username,
+                                                string.IsNullOrEmpty(user.Password) ? oldPerson.Account.Password : user.Password,
+                                                user.Role, oldPerson.Username);
 
-            return Ok(await _personRepo.Add(newPerson));
+                newPerson = new Person();
+                newPerson.Name = user.Name;
+                newPerson.Address = user.Address;
+                newPerson.Email = user.Email;
+                newPerson.Account = new Account();
+                newPerson.Account.Username = user.Username;
+                newPerson.Account.Role = user.Role;
+            }
+
+            return Ok(_mapper.Map<PersonDetails>(newPerson));
         }
     }
 }
