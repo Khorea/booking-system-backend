@@ -136,3 +136,10 @@ C:\Users\Ontegra Solutions\booking-system-backend\BookingSystemBackend\bin\Debug
 C:\Users\Ontegra Solutions\booking-system-backend\BookingSystemBackend\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\Ontegra Solutions\booking-system-backend\BookingSystemBackend\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\Ontegra Solutions\booking-system-backend\BookingSystemBackend\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+C:\Users\Ontegra Solutions\booking-system-backend\BookingSystemBackend\bin\Debug\net5.0\IdentityModel.dll
+C:\Users\Ontegra Solutions\booking-system-backend\BookingSystemBackend\bin\Debug\net5.0\IdentityServer4.dll
+C:\Users\Ontegra Solutions\booking-system-backend\BookingSystemBackend\bin\Debug\net5.0\IdentityServer4.EntityFramework.dll
+C:\Users\Ontegra Solutions\booking-system-backend\BookingSystemBackend\bin\Debug\net5.0\IdentityServer4.EntityFramework.Storage.dll
+C:\Users\Ontegra Solutions\booking-system-backend\BookingSystemBackend\bin\Debug\net5.0\IdentityServer4.Storage.dll
+C:\Users\Ontegra Solutions\booking-system-backend\BookingSystemBackend\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
+C:\Users\Ontegra Solutions\booking-system-backend\BookingSystemBackend\bin\Debug\net5.0\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll

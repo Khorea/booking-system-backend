@@ -64,6 +64,7 @@ namespace BookingSystemBackend.Controllers
                 oldPerson.Name = user.Name;
                 oldPerson.Address = user.Address;
                 oldPerson.Email = user.Email;
+                oldPerson.Account.Role = user.Role;
                 oldPerson.Account.Password = string.IsNullOrEmpty(user.Password) ? oldPerson.Account.Password : user.Password;
 
                 newPerson = await _personRepo.Update(oldPerson);
