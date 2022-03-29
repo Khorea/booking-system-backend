@@ -17,15 +17,15 @@ namespace BookingSystemBackend.Models
 
         public ICollection<Car> Cars { get; set; }
 
-        public ICollection<Station> Stations { get; set; }
+        public ICollection<Connection> Connections { get; set; }
 
         public Train() { }
 
-        public Train(string trainType, ICollection<Car> cars, ICollection<Station> stations)
+        public Train(string trainType, ICollection<Car> cars, ICollection<Connection> connections)
         {
             TrainType = trainType;
             Cars = cars;
-            Stations = stations;
+            Connections = connections;
         }
     }
 }

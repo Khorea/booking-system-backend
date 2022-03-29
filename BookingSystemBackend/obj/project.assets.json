@@ -6046,11 +6046,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Ontegra Solutions\\booking-system-backend\\BookingSystemBackend\\BookingSystemBackend.csproj",
+      "projectUniqueName": "C:\\Users\\Ontegra Solutions\\Licenta\\booking-system-backend\\BookingSystemBackend\\BookingSystemBackend.csproj",
       "projectName": "BookingSystemBackend",
-      "projectPath": "C:\\Users\\Ontegra Solutions\\booking-system-backend\\BookingSystemBackend\\BookingSystemBackend.csproj",
+      "projectPath": "C:\\Users\\Ontegra Solutions\\Licenta\\booking-system-backend\\BookingSystemBackend\\BookingSystemBackend.csproj",
       "packagesPath": "C:\\Users\\Ontegra Solutions\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Ontegra Solutions\\booking-system-backend\\BookingSystemBackend\\obj\\",
+      "outputPath": "C:\\Users\\Ontegra Solutions\\Licenta\\booking-system-backend\\BookingSystemBackend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Ontegra Solutions\\AppData\\Roaming\\NuGet\\NuGet.Config",
