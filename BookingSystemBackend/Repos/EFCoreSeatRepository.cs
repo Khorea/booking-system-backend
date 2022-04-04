@@ -1,4 +1,5 @@
 ﻿using BookingSystemBackend.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,11 @@ namespace BookingSystemBackend.Repos
         {
             _context = context;
         }
+
+        public async Task RemoveByCarIds(ICollection<int> carIds)
+		{
+            ICollection<Seat> seats = await _context.Seats.Where(x => carIds.Contains(x.CarId)).ToListAsync();
+            await DeleteRange(seats);
+		}
     }
 }

@@ -19,36 +19,19 @@ namespace BookingSystemBackend.Repos
         public new async Task<Train> Get(int trainId)
         {
             return await _context.Trains
-                .Include(x => x.Stations)
+                .Include(x => x.Connections)
                 .Include(x => x.Cars)
+                .ThenInclude(x => x.Seats)
                 .FirstOrDefaultAsync(x => x.TrainId == trainId);
         }
 
         public async new Task<List<Train>> GetAll()
         {
-            return await _context.Trains.Include(x => x.Stations).ToListAsync();
-        }
-
-        public new async Task<Train> Delete(int id)
-        {
-            Train train = await _context.Trains.Include(x => x.Stations)
+            return await _context.Trains
+                .Include(x => x.Connections)
                 .Include(x => x.Cars)
-                .Include(x => x.Cars).SingleAsync(x => x.TrainId == id);
-            if (train == null)
-            {
-                return train;
-            }
-            foreach (Car car in train.Cars)
-            {
-                Car c = await _context.Cars.Include(x => x.Seats).SingleAsync(x => x.CarId == car.CarId);
-                _context.Remove(c);
-            }
-
-            _context.Remove(train);
-
-            await _context.SaveChangesAsync();
-
-            return train;
+                .ThenInclude(x => x.Seats)
+                .ToListAsync();
         }
     }
 }

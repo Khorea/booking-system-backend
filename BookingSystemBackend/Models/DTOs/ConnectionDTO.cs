@@ -10,6 +10,6 @@ namespace BookingSystemBackend.Models.DTOs
 		public TimeSpan? DepartureTime { get; set; }
 		public int Distance { get; set; }
 		public int Line { get; set; }
-		public int OrderNumber { get; set; };
+		public int OrderNumber { get; set; }
 	}
 }

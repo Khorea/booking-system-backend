@@ -12,5 +12,6 @@ namespace BookingSystemBackend.Repos
         Task<T> Add(T entity);
         Task<T> Update(T entity);
         Task<T> Delete(int id);
+        Task DeleteRange(ICollection<T> entities);
     }
 }

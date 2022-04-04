@@ -17,12 +17,15 @@ namespace BookingSystemBackend.Models
         {
             modelBuilder.Entity<Booking>()
                 .HasKey(b => new { b.BookingDate, b.SeatId });
+            modelBuilder.Entity<Connection>()
+                .HasKey(c => new { c.StartStationId, c.EndStationId, c.TrainId });
         }
 
         public DbSet<Person> People { get; set; }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<Station> Stations { get; set; }
+        public DbSet<Connection> Connections { get; set; }
         public DbSet<Train> Trains { get; set; }
         public DbSet<Car> Cars { get; set; }
         public DbSet<Seat> Seats { get; set; }

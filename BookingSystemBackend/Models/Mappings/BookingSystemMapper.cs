@@ -34,16 +34,16 @@ namespace BookingSystemBackend.Models.Mappings
             // Does not work
             CreateMap<Train, TrainDTO>()
                 .ForMember(dest => dest.TrainType, opt => opt.MapFrom(source => source.TrainType))
-                .ForMember(dest => dest.Stations, opt => opt.MapFrom(source => source.Stations))
+                .ForMember(dest => dest.Connections, opt => opt.MapFrom(source => source.Connections))
                 .ForMember(dest => dest.TrainLayout, opt => opt.MapFrom(source => source.Cars));
             CreateMap<Train, TrainDetails>()
                 .ForMember(dest => dest.TrainType, opt => opt.MapFrom(source => source.TrainType))
-                .ForMember(dest => dest.DepartureTime, opt => opt.MapFrom(source => source.Stations.OrderBy(x => x.OrderNumber).First().DepartureTime))
-                .ForMember(dest => dest.ArrivalTime, opt => opt.MapFrom(source => source.Stations.OrderBy(x => x.OrderNumber).Last().ArriveTime))
-                .ForMember(dest => dest.DepartureStation, opt => opt.MapFrom(source => source.Stations.OrderBy(x => x.OrderNumber).First().Location))
-                .ForMember(dest => dest.ArrivalStation, opt => opt.MapFrom(source => source.Stations.OrderBy(x => x.OrderNumber).Last().Location))
-                .ForMember(dest => dest.TotalDuration, opt => opt.MapFrom(source => (source.Stations.OrderBy(x => x.OrderNumber).Last().ArriveTime - source.Stations.OrderBy(x => x.OrderNumber).First().DepartureTime).ToString()))
-                .ForMember(dest => dest.StationCount, opt => opt.MapFrom(source => source.Stations.Count));
+                .ForMember(dest => dest.DepartureTime, opt => opt.MapFrom(source => source.Connections.OrderBy(x => x.OrderNumber).First().DepartureTime))
+                .ForMember(dest => dest.ArrivalTime, opt => opt.MapFrom(source => source.Connections.OrderBy(x => x.OrderNumber).Last().ArriveTime))
+                .ForMember(dest => dest.DepartureStation, opt => opt.MapFrom(source => source.Connections.OrderBy(x => x.OrderNumber).First().StartStation.Name))
+                .ForMember(dest => dest.ArrivalStation, opt => opt.MapFrom(source => source.Connections.OrderBy(x => x.OrderNumber).Last().EndStation.Name))
+                .ForMember(dest => dest.TotalDuration, opt => opt.MapFrom(source => (source.Connections.OrderBy(x => x.OrderNumber).Last().ArriveTime - source.Connections.OrderBy(x => x.OrderNumber).First().DepartureTime).ToString()))
+                .ForMember(dest => dest.StationCount, opt => opt.MapFrom(source => source.Connections.Count));
         }
     }
 }

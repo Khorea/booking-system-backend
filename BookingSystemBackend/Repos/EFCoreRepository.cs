@@ -38,7 +38,7 @@ namespace BookingSystemBackend.Repos
             return entity;
         }
 
-        public async Task<TEntity> Get(int id)
+        public virtual async Task<TEntity> Get(int id)
         {
             return await _context.Set<TEntity>().FindAsync(id);
         }
@@ -54,5 +54,11 @@ namespace BookingSystemBackend.Repos
             await _context.SaveChangesAsync();
             return entity;
         }
+
+        public async Task DeleteRange(ICollection<TEntity> entities)
+		{
+            _context.Set<TEntity>().RemoveRange(entities);
+            await _context.SaveChangesAsync();
+		}
     }
 }

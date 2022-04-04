@@ -52,7 +52,7 @@ namespace BookingSystemBackend.Controllers
             Train t = await _trainService.Delete(trainId);
             if (t != null)
             {
-                return NoContent();
+                return Ok(t);
             }
             return NotFound();
         }
@@ -62,7 +62,7 @@ namespace BookingSystemBackend.Controllers
         public async Task<ActionResult> UpdateTrain(int trainId, TrainDTO trainModel)
         {
             await _trainService.UpdateTrain(trainId, trainModel);
-            return NoContent();
+            return Ok();
         }
     }
 }
