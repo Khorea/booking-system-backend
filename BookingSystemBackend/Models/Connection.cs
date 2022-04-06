@@ -6,17 +6,14 @@ namespace BookingSystemBackend.Models
 {
 	public class Connection
 	{
-		[ForeignKey("Station")]
 		public int StartStationId { get; set; }
 
 		public Station StartStation { get; set; }
 
-		[ForeignKey("Station")]
 		public int EndStationId { get; set; }
 
 		public Station EndStation { get; set; }
 
-		[ForeignKey("Train")]
 		public int TrainId { get; set; }
 
 		public Train Train { get; set; }

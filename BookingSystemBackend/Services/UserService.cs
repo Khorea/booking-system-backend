@@ -23,18 +23,10 @@ namespace BookingSystemBackend.Services
             _accountRepository = accountRepository;
         }
 
-        public async Task<Object> PostUser(User user)
+        public async Task<Person> PostUser(User user)
         {
             Person person = PersonBuilder.ToPerson(user);
-
-            try
-            {
-                return await _personRepository.Add(person);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            return await _personRepository.Add(person);
         }
 
         public async Task<string> Login(LoginDTO loginDTO)

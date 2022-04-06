@@ -19,6 +19,21 @@ namespace BookingSystemBackend.Models
                 .HasKey(b => new { b.BookingDate, b.SeatId });
             modelBuilder.Entity<Connection>()
                 .HasKey(c => new { c.StartStationId, c.EndStationId, c.TrainId });
+            modelBuilder.Entity<Connection>()
+                .HasOne(c => c.StartStation)
+                .WithMany()
+                .HasForeignKey(c => c.StartStationId)
+                .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Connection>()
+                .HasOne(c => c.EndStation)
+                .WithMany()
+                .HasForeignKey(c => c.EndStationId)
+                .OnDelete(DeleteBehavior.NoAction); ;
+            modelBuilder.Entity<Connection>()
+                .HasOne(c => c.Train)
+                .WithMany(t => t.Connections)
+                .HasForeignKey(c => c.TrainId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
 
         public DbSet<Person> People { get; set; }
