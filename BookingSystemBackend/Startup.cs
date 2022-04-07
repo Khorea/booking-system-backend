@@ -52,6 +52,7 @@ namespace BookingSystemBackend
             services.AddScoped<IConnectionRepository, EFCoreConnectionRepository>();
             services.AddScoped<UserService>();
             services.AddScoped<TrainService>();
+            services.AddScoped<StationService>();
             services.AddScoped<CarService>();
             services.AddScoped<LayoutService>();
 
