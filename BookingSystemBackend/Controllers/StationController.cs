@@ -23,9 +23,21 @@ namespace BookingSystemBackend.Controllers
 
 		[HttpGet]
 		[Route("get-all")]
-		public ActionResult<List<StationDTO>> GetTrain(int trainId)
+		public async Task<ActionResult<List<StationDTO>>> GetStations(int stationId)
 		{
-			return Ok(_stationService.GetStations());
+			return Ok(await _stationService.GetStations());
+		}
+
+		[HttpPost]
+		public async Task<ActionResult<StationDTO>> AddStation(StationDTO stationDTO)
+		{
+			return Ok(await _stationService.AddStation(stationDTO));
+		}
+
+		[HttpDelete]
+		public async Task<ActionResult<StationDTO>> DeleteStation(int stationId)
+		{
+			return Ok(await _stationService.DeleteStationById(stationId));
 		}
 	}
 }

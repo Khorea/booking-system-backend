@@ -26,5 +26,19 @@ namespace BookingSystemBackend.Services
             List<Station> stations = await _stationRepository.GetAll();
             return _mapper.Map<List<StationDTO>>(stations);
         }
+
+        public async Task<StationDTO> AddStation(StationDTO stationDTO)
+        {
+            Station station = new Station();
+            station.Name = stationDTO.Name;
+            station = await _stationRepository.Add(station);
+            return _mapper.Map<StationDTO>(station);
+        }
+
+        public async Task<StationDTO> DeleteStationById(int stationId)
+        {
+            Station station = await _stationRepository.Delete(stationId);
+            return _mapper.Map<StationDTO>(station);
+        }
     }
 }

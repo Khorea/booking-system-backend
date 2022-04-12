@@ -30,6 +30,22 @@ namespace BookingSystemBackend.Models.Mappings
                 .ForPath(source => source.Account.Role, opt => opt.MapFrom(dest => dest.Role));
 
             CreateMap<Station, StationDTO>();
+            CreateMap<Connection, ConnectionDTO>()
+                .ForMember(dest => dest.StartStationId, opt => opt.MapFrom(source => source.StartStationId))
+                .ForMember(dest => dest.EndStationId, opt => opt.MapFrom(source => source.EndStationId))
+                .ForMember(dest => dest.ArriveTime, opt => opt.MapFrom(source => source.ArriveTime))
+                .ForMember(dest => dest.DepartureTime, opt => opt.MapFrom(source => source.DepartureTime))
+                .ForMember(dest => dest.Distance, opt => opt.MapFrom(source => source.Distance))
+                .ForMember(dest => dest.Line, opt => opt.MapFrom(source => source.Line))
+                .ForMember(dest => dest.OrderNumber, opt => opt.MapFrom(source => source.OrderNumber))
+                .ReverseMap()
+                .ForPath(source => source.StartStationId, opt => opt.MapFrom(dest => dest.StartStationId))
+                .ForPath(source => source.EndStationId, opt => opt.MapFrom(dest => dest.EndStationId))
+                .ForPath(source => source.ArriveTime, opt => opt.MapFrom(dest => dest.ArriveTime))
+                .ForPath(source => source.DepartureTime, opt => opt.MapFrom(dest => dest.DepartureTime))
+                .ForPath(source => source.Distance, opt => opt.MapFrom(dest => dest.Distance))
+                .ForPath(source => source.Line, opt => opt.MapFrom(dest => dest.Line))
+                .ForPath(source => source.OrderNumber, opt => opt.MapFrom(dest => dest.OrderNumber));
 
             // Does not work
             CreateMap<Train, TrainDTO>()

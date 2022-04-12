@@ -2,7 +2,7 @@
 {
     public class StationDTO
     {
-        public int StationId { get; set; }
+        public int? StationId { get; set; }
         public string Name { get; set; }
     }
 }

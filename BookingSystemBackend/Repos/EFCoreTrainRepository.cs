@@ -19,7 +19,10 @@ namespace BookingSystemBackend.Repos
         public new async Task<Train> Get(int trainId)
         {
             return await _context.Trains
+                .Include(x => x.Connections.OrderBy(c => c.OrderNumber))
+                .ThenInclude(c => c.StartStation)
                 .Include(x => x.Connections)
+                .ThenInclude(c => c.EndStation)
                 .Include(x => x.Cars)
                 .ThenInclude(x => x.Seats)
                 .FirstOrDefaultAsync(x => x.TrainId == trainId);
@@ -28,7 +31,10 @@ namespace BookingSystemBackend.Repos
         public async new Task<List<Train>> GetAll()
         {
             return await _context.Trains
+                .Include(x => x.Connections.OrderBy(c => c.OrderNumber))
+                .ThenInclude(c => c.StartStation)
                 .Include(x => x.Connections)
+                .ThenInclude(c => c.EndStation)
                 .Include(x => x.Cars)
                 .ThenInclude(x => x.Seats)
                 .ToListAsync();
