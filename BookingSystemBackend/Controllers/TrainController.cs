@@ -40,9 +40,17 @@ namespace BookingSystemBackend.Controllers
         [HttpGet]
         [Authorize]
         [Route("AllTrains")]
-        public async Task<ActionResult<TrainDetails>> GetAllTrains()
+        public async Task<ActionResult<List<TrainDetails>>> GetAllTrains()
         {
             return Ok(await _trainService.GetAllTrains());
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("client-all-trains")]
+        public async Task<ActionResult<List<TrainDTOClient>>> GetTrainsForClient()
+        {
+            return Ok(await _trainService.GetTrainsForClient());
         }
 
         [HttpDelete]

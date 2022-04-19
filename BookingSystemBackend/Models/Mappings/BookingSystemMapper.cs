@@ -60,6 +60,29 @@ namespace BookingSystemBackend.Models.Mappings
                 .ForMember(dest => dest.ArrivalStation, opt => opt.MapFrom(source => source.Connections.OrderBy(x => x.OrderNumber).Last().EndStation.Name))
                 .ForMember(dest => dest.TotalDuration, opt => opt.MapFrom(source => (source.Connections.OrderBy(x => x.OrderNumber).Last().ArriveTime - source.Connections.OrderBy(x => x.OrderNumber).First().DepartureTime).ToString()))
                 .ForMember(dest => dest.StationCount, opt => opt.MapFrom(source => source.Connections.Count));
+
+            CreateMap<Seat, SeatDTOClient>()
+                .ForMember(dest => dest.SeatId, opt => opt.MapFrom(source => source.SeatId));
+
+            CreateMap<Car, CarDTOClient>()
+                .ForMember(dest => dest.CarId, opt => opt.MapFrom(source => source.CarId))
+                .ForMember(dest => dest.CarType, opt => opt.MapFrom(source => source.CarType))
+                .ForMember(dest => dest.Seats, opt => opt.MapFrom(source => source.Seats));
+
+            CreateMap<Connection, ConnectionDTOClient>()
+                .ForMember(dest => dest.StartStationId, opt => opt.MapFrom(source => source.StartStationId))
+                .ForMember(dest => dest.EndStationId, opt => opt.MapFrom(source => source.EndStationId))
+                .ForMember(dest => dest.ArriveTime, opt => opt.MapFrom(source => source.ArriveTime.ToString()))
+                .ForMember(dest => dest.DepartureTime, opt => opt.MapFrom(source => source.DepartureTime.ToString()))
+                .ForMember(dest => dest.Distance, opt => opt.MapFrom(source => source.Distance))
+                .ForMember(dest => dest.Line, opt => opt.MapFrom(source => source.Line))
+                .ForMember(dest => dest.OrderNumber, opt => opt.MapFrom(source => source.OrderNumber));
+
+            CreateMap<Train, TrainDTOClient>()
+                .ForMember(dest => dest.TrainId, opt => opt.MapFrom(source => source.TrainId))
+                .ForMember(dest => dest.TrainType, opt => opt.MapFrom(source => source.TrainType))
+                .ForMember(dest => dest.Cars, opt => opt.MapFrom(source => source.Cars))
+                .ForMember(dest => dest.Connections, opt => opt.MapFrom(source => source.Connections));
         }
     }
 }

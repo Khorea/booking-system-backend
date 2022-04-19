@@ -85,6 +85,12 @@ namespace BookingSystemBackend.Services
             return trainDetails;
         }
 
+        public async Task<List<TrainDTOClient>> GetTrainsForClient()
+        {
+            List<Train> trains = await _trainRepository.GetAll();
+            return _mapper.Map<List<TrainDTOClient>>(trains);
+        }
+
         public async Task UpdateTrain(int trainId, TrainDTO trainDTO)
         {
             Train oldTrain = await _trainRepository.Get(trainId);
