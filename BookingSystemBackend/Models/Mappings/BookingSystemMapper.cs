@@ -70,8 +70,8 @@ namespace BookingSystemBackend.Models.Mappings
                 .ForMember(dest => dest.Seats, opt => opt.MapFrom(source => source.Seats));
 
             CreateMap<Connection, ConnectionDTOClient>()
-                .ForMember(dest => dest.StartStationId, opt => opt.MapFrom(source => source.StartStationId))
-                .ForMember(dest => dest.EndStationId, opt => opt.MapFrom(source => source.EndStationId))
+                .ForMember(dest => dest.StartStation, opt => opt.MapFrom(source => source.StartStation))
+                .ForMember(dest => dest.EndStation, opt => opt.MapFrom(source => source.EndStation))
                 .ForMember(dest => dest.ArriveTime, opt => opt.MapFrom(source => source.ArriveTime.ToString()))
                 .ForMember(dest => dest.DepartureTime, opt => opt.MapFrom(source => source.DepartureTime.ToString()))
                 .ForMember(dest => dest.Distance, opt => opt.MapFrom(source => source.Distance))
