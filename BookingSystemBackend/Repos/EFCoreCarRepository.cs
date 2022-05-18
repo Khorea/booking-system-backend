@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using static BookingSystemBackend.Utils.Enums;
 
 namespace BookingSystemBackend.Repos
 {
@@ -31,7 +30,7 @@ namespace BookingSystemBackend.Repos
             return car;
         }
 
-        public async Task<Car> RemoveCar(int trainId, CarType carType)
+        public async Task<Car> RemoveCar(int trainId, string carType)
         {
             var car = await _context.Cars.Include(x => x.Seats).Where(x => x.TrainId == trainId && x.CarType.Equals(carType)).FirstOrDefaultAsync();
             if (car == null)

@@ -2,7 +2,6 @@
 using BookingSystemBackend.Models;
 using BookingSystemBackend.Repos;
 using System.Threading.Tasks;
-using static BookingSystemBackend.Utils.Enums;
 
 namespace BookingSystemBackend.Services
 {
@@ -25,7 +24,7 @@ namespace BookingSystemBackend.Services
         {
             car = await _carRepository.Add(car);
 
-            if (car.CarType.Equals("First Class"))
+            if (car.CarType.Equals("firstClass"))
             {
                 for (int j = 0; j < 20; j++)
                 {
@@ -34,7 +33,7 @@ namespace BookingSystemBackend.Services
                     car.Seats.Add(seat);
                 }
             } 
-            else if (car.CarType.Equals("Second Class"))
+            else if (car.CarType.Equals("secondClass"))
             {
                 for (int j = 0; j < 50; j++)
                 {
@@ -43,7 +42,7 @@ namespace BookingSystemBackend.Services
                     car.Seats.Add(seat);
                 }
             }
-            else if (car.CarType.Equals("First Class Sleeper"))
+            else if (car.CarType.Equals("sleeper"))
             {
                 for (int j = 0; j < 10; j++)
                 {
@@ -52,7 +51,7 @@ namespace BookingSystemBackend.Services
                     car.Seats.Add(seat);
                 }
             }
-            else if (car.CarType.Equals("Couchette"))
+            else if (car.CarType.Equals("couchette"))
             {
                 for (int j = 0; j < 60; j++)
                 {
@@ -65,7 +64,7 @@ namespace BookingSystemBackend.Services
             return car;
         }
 
-        public async Task<Car> RemoveCar(int trainId, CarType carType)
+        public async Task<Car> RemoveCar(int trainId, string carType)
         {
             return await _carRepository.RemoveCar(trainId, carType);
         }

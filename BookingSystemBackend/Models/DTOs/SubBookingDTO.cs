@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using static BookingSystemBackend.Utils.Enums;
 
 namespace BookingSystemBackend.Models.DTOs
 {
@@ -12,7 +11,7 @@ namespace BookingSystemBackend.Models.DTOs
 
         public int TrainId { get; set; }
 
-        public CarType CarType { get; set; }
+        public string CarType { get; set; }
 
         public int FirstStationId { get; set; }
 

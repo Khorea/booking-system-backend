@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
-using static BookingSystemBackend.Utils.Enums;
 
 namespace BookingSystemBackend.Models
 {
@@ -14,7 +13,7 @@ namespace BookingSystemBackend.Models
         public int CarId { get; set; }
 
         [Column(TypeName = "nvarchar(30)")]
-        public CarType CarType { get; set; }
+        public string CarType { get; set; }
 
         [ForeignKey("Train")]
         public int TrainId { get; set; }
@@ -22,7 +21,7 @@ namespace BookingSystemBackend.Models
         public ICollection<Seat> Seats { get; set; }
 
         public Car() { }
-        public Car(CarType carType, int trainId)
+        public Car(string carType, int trainId)
         {
             CarType = carType;
             TrainId = trainId;

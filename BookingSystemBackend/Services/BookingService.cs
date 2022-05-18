@@ -34,6 +34,7 @@ namespace BookingSystemBackend.Services
             Booking booking = new Booking();
             booking.Person = await _personRepo.GetByUsername(bookingDTO.Username);
             booking.PersonId = booking.Person.PersonId;
+            booking.SubBookings = new List<SubBooking>();
 
             List<Car> cars = await _carRepository.GetAll();
 
