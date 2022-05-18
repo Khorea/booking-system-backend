@@ -50,11 +50,14 @@ namespace BookingSystemBackend
             services.AddScoped<ISeatRepository, EFCoreSeatRepository>();
             services.AddScoped<IStationRepository, EFCoreStationRepository>();
             services.AddScoped<IConnectionRepository, EFCoreConnectionRepository>();
+            services.AddScoped<IBookingRepository, EFCoreBookingRepository>();
+            services.AddScoped<ISubBookingRepository, EFCoreSubBookingRepository>();
             services.AddScoped<UserService>();
             services.AddScoped<TrainService>();
             services.AddScoped<StationService>();
             services.AddScoped<CarService>();
             services.AddScoped<LayoutService>();
+            services.AddScoped<BookingService>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

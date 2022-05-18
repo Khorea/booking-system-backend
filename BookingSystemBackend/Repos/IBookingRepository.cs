@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookingSystemBackend.Repos
 {
-    public interface ISeatRepository : IRepository<Seat>
-    {
-        Task RemoveByCarIds(ICollection<int> carIds);
-
-        Task<List<Seat>> GetByCarIds(List<int> carIds);
-    }
+	public interface IBookingRepository : IRepository<Booking>
+	{
+	}
 }

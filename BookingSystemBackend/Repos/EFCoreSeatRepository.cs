@@ -21,5 +21,10 @@ namespace BookingSystemBackend.Repos
             ICollection<Seat> seats = await _context.Seats.Where(x => carIds.Contains(x.CarId)).ToListAsync();
             await DeleteRange(seats);
 		}
+
+        public async Task<List<Seat>> GetByCarIds(List<int> carIds)
+		{
+            return await _context.Seats.Where(x => carIds.Contains(x.CarId)).ToListAsync();
+		}
     }
 }

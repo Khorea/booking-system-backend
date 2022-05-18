@@ -15,8 +15,6 @@ namespace BookingSystemBackend.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Booking>()
-                .HasKey(b => new { b.BookingDate, b.SeatId });
             modelBuilder.Entity<Connection>()
                 .HasKey(c => new { c.StartStationId, c.EndStationId, c.TrainId });
             modelBuilder.Entity<Connection>()
@@ -34,11 +32,31 @@ namespace BookingSystemBackend.Models
                 .WithMany(t => t.Connections)
                 .HasForeignKey(c => c.TrainId)
                 .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<SubBooking>()
+                .HasOne(x => x.Train)
+                .WithMany()
+                .HasForeignKey(x => x.TrainId);
+            modelBuilder.Entity<SubBooking>()
+                .HasOne(x => x.FirstStation)
+                .WithMany()
+                .HasForeignKey(x => x.FirstStationId)
+                .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<SubBooking>()
+               .HasOne(x => x.SecondStation)
+               .WithMany()
+               .HasForeignKey(x => x.SecondStationId)
+               .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<SubBooking>()
+               .HasOne(x => x.Seat)
+               .WithMany()
+               .HasForeignKey(x => x.SeatId)
+               .OnDelete(DeleteBehavior.NoAction);
         }
 
         public DbSet<Person> People { get; set; }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Booking> Bookings { get; set; }
+        public DbSet<SubBooking> SubBookings { get; set; }
         public DbSet<Station> Stations { get; set; }
         public DbSet<Connection> Connections { get; set; }
         public DbSet<Train> Trains { get; set; }

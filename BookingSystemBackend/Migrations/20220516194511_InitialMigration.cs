@@ -56,6 +56,7 @@ namespace BookingSystemBackend.Migrations
                     Name = table.Column<string>(type: "nvarchar(100)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(300)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(320)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(15)", nullable: true),
                     Username = table.Column<string>(type: "nvarchar(30)", nullable: true)
                 },
                 constraints: table =>
@@ -126,25 +127,18 @@ namespace BookingSystemBackend.Migrations
                 name: "Bookings",
                 columns: table => new
                 {
-                    BookingDate = table.Column<DateTime>(type: "Date", nullable: false),
-                    SeatId = table.Column<int>(type: "int", nullable: false),
-                    PersonId = table.Column<int>(type: "int", nullable: false),
-                    TrainId = table.Column<int>(type: "int", nullable: false)
+                    BookingId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PersonId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Bookings", x => new { x.BookingDate, x.SeatId });
+                    table.PrimaryKey("PK_Bookings", x => x.BookingId);
                     table.ForeignKey(
                         name: "FK_Bookings_People_PersonId",
                         column: x => x.PersonId,
                         principalTable: "People",
                         principalColumn: "PersonId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Bookings_Trains_TrainId",
-                        column: x => x.TrainId,
-                        principalTable: "Trains",
-                        principalColumn: "TrainId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -167,15 +161,56 @@ namespace BookingSystemBackend.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "SubBookings",
+                columns: table => new
+                {
+                    SubBookingId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BookingId = table.Column<int>(type: "int", nullable: false),
+                    BookingDate = table.Column<DateTime>(type: "Date", nullable: false),
+                    TrainId = table.Column<int>(type: "int", nullable: false),
+                    SeatId = table.Column<int>(type: "int", nullable: false),
+                    FirstStationId = table.Column<int>(type: "int", nullable: false),
+                    SecondStationId = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SubBookings", x => x.SubBookingId);
+                    table.ForeignKey(
+                        name: "FK_SubBookings_Bookings_BookingId",
+                        column: x => x.BookingId,
+                        principalTable: "Bookings",
+                        principalColumn: "BookingId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_SubBookings_Seats_SeatId",
+                        column: x => x.SeatId,
+                        principalTable: "Seats",
+                        principalColumn: "SeatId");
+                    table.ForeignKey(
+                        name: "FK_SubBookings_Stations_FirstStationId",
+                        column: x => x.FirstStationId,
+                        principalTable: "Stations",
+                        principalColumn: "StationId");
+                    table.ForeignKey(
+                        name: "FK_SubBookings_Stations_SecondStationId",
+                        column: x => x.SecondStationId,
+                        principalTable: "Stations",
+                        principalColumn: "StationId");
+                    table.ForeignKey(
+                        name: "FK_SubBookings_Trains_TrainId",
+                        column: x => x.TrainId,
+                        principalTable: "Trains",
+                        principalColumn: "TrainId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Bookings_PersonId",
                 table: "Bookings",
                 column: "PersonId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Bookings_TrainId",
-                table: "Bookings",
-                column: "TrainId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cars_TrainId",
@@ -201,24 +236,52 @@ namespace BookingSystemBackend.Migrations
                 name: "IX_Seats_CarId",
                 table: "Seats",
                 column: "CarId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SubBookings_BookingId",
+                table: "SubBookings",
+                column: "BookingId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SubBookings_FirstStationId",
+                table: "SubBookings",
+                column: "FirstStationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SubBookings_SeatId",
+                table: "SubBookings",
+                column: "SeatId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SubBookings_SecondStationId",
+                table: "SubBookings",
+                column: "SecondStationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SubBookings_TrainId",
+                table: "SubBookings",
+                column: "TrainId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Bookings");
+                name: "Connections");
 
             migrationBuilder.DropTable(
-                name: "Connections");
+                name: "SubBookings");
+
+            migrationBuilder.DropTable(
+                name: "Bookings");
 
             migrationBuilder.DropTable(
                 name: "Seats");
 
             migrationBuilder.DropTable(
-                name: "People");
+                name: "Stations");
 
             migrationBuilder.DropTable(
-                name: "Stations");
+                name: "People");
 
             migrationBuilder.DropTable(
                 name: "Cars");

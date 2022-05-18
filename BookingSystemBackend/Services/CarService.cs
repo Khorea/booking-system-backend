@@ -2,6 +2,7 @@
 using BookingSystemBackend.Models;
 using BookingSystemBackend.Repos;
 using System.Threading.Tasks;
+using static BookingSystemBackend.Utils.Enums;
 
 namespace BookingSystemBackend.Services
 {
@@ -64,7 +65,7 @@ namespace BookingSystemBackend.Services
             return car;
         }
 
-        public async Task<Car> RemoveCar(int trainId, string carType)
+        public async Task<Car> RemoveCar(int trainId, CarType carType)
         {
             return await _carRepository.RemoveCar(trainId, carType);
         }

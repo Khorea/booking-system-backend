@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookingSystemBackend.Migrations
 {
     [DbContext(typeof(BookingSystemContext))]
-    [Migration("20220404213115_InitialMigration")]
+    [Migration("20220516194511_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,23 +42,17 @@ namespace BookingSystemBackend.Migrations
 
             modelBuilder.Entity("BookingSystemBackend.Models.Booking", b =>
                 {
-                    b.Property<DateTime>("BookingDate")
-                        .HasColumnType("Date");
-
-                    b.Property<int>("SeatId")
-                        .HasColumnType("int");
+                    b.Property<int>("BookingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<int>("PersonId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TrainId")
-                        .HasColumnType("int");
-
-                    b.HasKey("BookingDate", "SeatId");
+                    b.HasKey("BookingId");
 
                     b.HasIndex("PersonId");
-
-                    b.HasIndex("TrainId");
 
                     b.ToTable("Bookings");
                 });
@@ -134,6 +128,9 @@ namespace BookingSystemBackend.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(15)");
+
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(30)");
 
@@ -176,6 +173,49 @@ namespace BookingSystemBackend.Migrations
                     b.ToTable("Stations");
                 });
 
+            modelBuilder.Entity("BookingSystemBackend.Models.SubBooking", b =>
+                {
+                    b.Property<int>("SubBookingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("BookingDate")
+                        .HasColumnType("Date");
+
+                    b.Property<int>("BookingId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FirstStationId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SeatId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SecondStationId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TrainId")
+                        .HasColumnType("int");
+
+                    b.HasKey("SubBookingId");
+
+                    b.HasIndex("BookingId");
+
+                    b.HasIndex("FirstStationId");
+
+                    b.HasIndex("SeatId");
+
+                    b.HasIndex("SecondStationId");
+
+                    b.HasIndex("TrainId");
+
+                    b.ToTable("SubBookings");
+                });
+
             modelBuilder.Entity("BookingSystemBackend.Models.Train", b =>
                 {
                     b.Property<int>("TrainId")
@@ -199,15 +239,7 @@ namespace BookingSystemBackend.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BookingSystemBackend.Models.Train", "Train")
-                        .WithMany()
-                        .HasForeignKey("TrainId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Person");
-
-                    b.Navigation("Train");
                 });
 
             modelBuilder.Entity("BookingSystemBackend.Models.Car", b =>
@@ -264,6 +296,52 @@ namespace BookingSystemBackend.Migrations
                         .IsRequired();
 
                     b.Navigation("Car");
+                });
+
+            modelBuilder.Entity("BookingSystemBackend.Models.SubBooking", b =>
+                {
+                    b.HasOne("BookingSystemBackend.Models.Booking", null)
+                        .WithMany("SubBooking")
+                        .HasForeignKey("BookingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BookingSystemBackend.Models.Station", "FirstStation")
+                        .WithMany()
+                        .HasForeignKey("FirstStationId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("BookingSystemBackend.Models.Seat", "Seat")
+                        .WithMany()
+                        .HasForeignKey("SeatId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("BookingSystemBackend.Models.Station", "SecondStation")
+                        .WithMany()
+                        .HasForeignKey("SecondStationId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("BookingSystemBackend.Models.Train", "Train")
+                        .WithMany()
+                        .HasForeignKey("TrainId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FirstStation");
+
+                    b.Navigation("Seat");
+
+                    b.Navigation("SecondStation");
+
+                    b.Navigation("Train");
+                });
+
+            modelBuilder.Entity("BookingSystemBackend.Models.Booking", b =>
+                {
+                    b.Navigation("SubBooking");
                 });
 
             modelBuilder.Entity("BookingSystemBackend.Models.Car", b =>

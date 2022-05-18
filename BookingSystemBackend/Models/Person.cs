@@ -21,6 +21,9 @@ namespace BookingSystemBackend.Models
         [Column(TypeName = "nvarchar(320)")]
         public string Email { get; set; }
 
+        [Column(TypeName = "nvarchar(15)")]
+        public string PhoneNumber { get; set; }
+
         [ForeignKey("Account"), Column(TypeName = "nvarchar(30)")]
         public string Username { get; set; }
 

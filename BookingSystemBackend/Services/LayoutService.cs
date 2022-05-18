@@ -3,6 +3,7 @@ using BookingSystemBackend.Models.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using static BookingSystemBackend.Utils.Enums;
 
 namespace BookingSystemBackend.Services
 {
@@ -21,28 +22,28 @@ namespace BookingSystemBackend.Services
 
             for (int i = 0; i < trainLayout.FirstClass; i++)
             {
-                Car car = new Car("First Class", trainId);
+                Car car = new Car(CarType.FirstClass, trainId);
                 car = await _carService.InsertCar(car);
                 cars.Add(car);
             }
 
             for (int i = 0; i < trainLayout.SecondClass; i++)
             {
-                Car car = new Car("Second Class", trainId);
+                Car car = new Car(CarType.SecondClass, trainId);
                 car = await _carService.InsertCar(car);
                 cars.Add(car);
             }
 
             for (int i = 0; i < trainLayout.FirstClassSleeper; i++)
             {
-                Car car = new Car("First Class Sleeper", trainId);
+                Car car = new Car(CarType.Sleeper, trainId);
                 car = await _carService.InsertCar(car);
                 cars.Add(car);
             }
 
             for (int i = 0; i < trainLayout.Couchette; i++)
             {
-                Car car = new Car("Couchette", trainId);
+                Car car = new Car(CarType.Couchette, trainId);
                 car = await _carService.InsertCar(car);
                 cars.Add(car);
             }
@@ -57,7 +58,7 @@ namespace BookingSystemBackend.Services
             {
                 for (int i = 0; i < diff; i++)
                 {
-                    Car newCar = new Car("First Class", trainId);
+                    Car newCar = new Car(CarType.FirstClass, trainId);
                     await _carService.InsertCar(newCar);
                 }
             } 
@@ -65,7 +66,7 @@ namespace BookingSystemBackend.Services
             {
                 for (int i = 0; i < diff; i++)
                 {
-                    await _carService.RemoveCar(trainId, "First Class");
+                    await _carService.RemoveCar(trainId, CarType.FirstClass);
                 }
             }
 
@@ -74,7 +75,7 @@ namespace BookingSystemBackend.Services
             {
                 for (int i = 0; i < diff; i++)
                 {
-                    Car newCar = new Car("Second Class", trainId);
+                    Car newCar = new Car(CarType.SecondClass, trainId);
                     await _carService.InsertCar(newCar);
                 }
             }
@@ -82,7 +83,7 @@ namespace BookingSystemBackend.Services
             {
                 for (int i = 0; i < diff; i++)
                 {
-                    await _carService.RemoveCar(trainId, "Second Class");
+                    await _carService.RemoveCar(trainId, CarType.SecondClass);
                 }
             }
 
@@ -91,7 +92,7 @@ namespace BookingSystemBackend.Services
             {
                 for (int i = 0; i < diff; i++)
                 {
-                    Car newCar = new Car("First Class Sleeper", trainId);
+                    Car newCar = new Car(CarType.Sleeper, trainId);
                     await _carService.InsertCar(newCar);
                 }
             }
@@ -99,7 +100,7 @@ namespace BookingSystemBackend.Services
             {
                 for (int i = 0; i < diff; i++)
                 {
-                    await _carService.RemoveCar(trainId, "First Class Sleeper");
+                    await _carService.RemoveCar(trainId, CarType.Sleeper);
                 }
             }
 
@@ -108,7 +109,7 @@ namespace BookingSystemBackend.Services
             {
                 for (int i = 0; i < diff; i++)
                 {
-                    Car newCar = new Car("Couchette", trainId);
+                    Car newCar = new Car(CarType.Couchette, trainId);
                     await _carService.InsertCar(newCar);
                 }
             }
@@ -116,7 +117,7 @@ namespace BookingSystemBackend.Services
             {
                 for (int i = 0; i < diff; i++)
                 {
-                    await _carService.RemoveCar(trainId, "Couchette");
+                    await _carService.RemoveCar(trainId, CarType.Couchette);
                 }
             }
         }
