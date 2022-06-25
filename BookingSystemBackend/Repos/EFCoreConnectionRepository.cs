@@ -1,4 +1,6 @@
 ﻿using BookingSystemBackend.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BookingSystemBackend.Repos
@@ -10,6 +12,15 @@ namespace BookingSystemBackend.Repos
         public EFCoreConnectionRepository(BookingSystemContext context) : base(context)
         {
             _context = context;
+        }
+
+        public async Task<List<Connection>> GetAllIncludeEverythingAsync()
+		{
+            return await _context.Connections
+                .Include(c => c.StartStation)
+                .Include(c => c.EndStation)
+                .Include(c => c.Train)
+                .ToListAsync();
         }
     }
 }

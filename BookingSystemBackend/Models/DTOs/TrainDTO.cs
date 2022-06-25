@@ -7,6 +7,8 @@ namespace BookingSystemBackend.Models.DTOs
 {
     public class TrainDTO
     {
+        public TrainDTO() {}
+
         public TrainDTO(string trainType, List<ConnectionDTO> connections, TrainLayout trainLayout)
         {
             TrainType = trainType;

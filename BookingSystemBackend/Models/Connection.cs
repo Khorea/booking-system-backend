@@ -14,9 +14,9 @@ namespace BookingSystemBackend.Models
 
 		public Station EndStation { get; set; }
 
-		public int TrainId { get; set; }
-
 		public Train Train { get; set; }
+
+		public int TrainId { get; set; }
 
 		[Column(TypeName = "time(7)")]
 		public TimeSpan? ArriveTime { get; set; }

@@ -29,5 +29,11 @@ namespace BookingSystemBackend.Controllers
 			return Ok(await _bookingService.Book(bookingDTO));
 		}
 
+		[HttpGet]
+		[Route("generate-routes")]
+		public async Task<ActionResult<List<BookingDTO>>> GenerateRoutes([FromQuery] int departureStationId, [FromQuery] int arrivalStationId)
+		{
+			return Ok(await _bookingService.GenerateRoutes(departureStationId, arrivalStationId));
+		}
 	}
 }

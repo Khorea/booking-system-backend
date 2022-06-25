@@ -9,11 +9,17 @@ namespace BookingSystemBackend.Models.DTOs
 	{
         public DateTime BookingDate { get; set; }
 
+        public TrainDTOClient Train { get; set; }
+
         public int TrainId { get; set; }
 
         public string CarType { get; set; }
 
+        public StationDTO FirstStation { get; set; }
+
         public int FirstStationId { get; set; }
+
+        public StationDTO SecondStation { get; set; }
 
         public int SecondStationId { get; set; }
     }
