@@ -6041,19 +6041,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\horea\\.nuget\\packages\\": {}
+    "C:\\Users\\Horea Frinco\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Altele\\Facultate\\Licenta\\booking-system-backend\\BookingSystemBackend\\BookingSystemBackend.csproj",
+      "projectUniqueName": "C:\\Facultate\\booking-system-backend\\BookingSystemBackend\\BookingSystemBackend.csproj",
       "projectName": "BookingSystemBackend",
-      "projectPath": "F:\\Altele\\Facultate\\Licenta\\booking-system-backend\\BookingSystemBackend\\BookingSystemBackend.csproj",
-      "packagesPath": "C:\\Users\\horea\\.nuget\\packages\\",
-      "outputPath": "F:\\Altele\\Facultate\\Licenta\\booking-system-backend\\BookingSystemBackend\\obj\\",
+      "projectPath": "C:\\Facultate\\booking-system-backend\\BookingSystemBackend\\BookingSystemBackend.csproj",
+      "packagesPath": "C:\\Users\\Horea Frinco\\.nuget\\packages\\",
+      "outputPath": "C:\\Facultate\\booking-system-backend\\BookingSystemBackend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\horea\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Horea Frinco\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6061,6 +6061,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "http://packages.nuget.org": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -6144,7 +6145,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   },

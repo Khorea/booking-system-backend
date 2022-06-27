@@ -42,7 +42,9 @@ namespace BookingSystemBackend
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BookingSystemBackend", Version = "v1" });
             });
 
-            services.AddDbContext<BookingSystemContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
+            services.AddDbContext<BookingSystemContext>(
+                options => options.UseSqlServer(Configuration.GetConnectionString("DevConnection"), 
+                options => options.EnableRetryOnFailure()));
             services.AddScoped<IPersonRepository, EFCorePersonRepository>();
             services.AddScoped<IAccountRepository, EFCoreAccountRepository>();
             services.AddScoped<ITrainRepository, EFCoreTrainRepository>();
